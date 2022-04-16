@@ -1,5 +1,6 @@
 # foodDeliveryApp
-Delivery icons created by dreamicons - Flaticon
+
+## Delivery icons created by dreamicons - Flaticon
 
 첫 시작(setting)
 공식문서
@@ -86,70 +87,70 @@ import android.os.Bundle;
 ...
 @Override
 protected void onCreate(Bundle savedInstanceState) {
-  super.onCreate(null);
+super.onCreate(null);
 }
 App.tsx 교체
 
-import * as React from 'react';
+import \* as React from 'react';
 import {NavigationContainer, ParamListBase} from '@react-navigation/native';
 import {
-  createNativeStackNavigator,
-  NativeStackScreenProps,
+createNativeStackNavigator,
+NativeStackScreenProps,
 } from '@react-navigation/native-stack';
 import {Text, TouchableHighlight, View} from 'react-native';
 import {useCallback} from 'react';
 
 type RootStackParamList = {
-  Home: undefined;
-  Details: undefined;
+Home: undefined;
+Details: undefined;
 };
 type HomeScreenProps = NativeStackScreenProps<RootStackParamList, 'Home'>;
 type DetailsScreenProps = NativeStackScreenProps<ParamListBase, 'Details'>;
 
 function HomeScreen({navigation}: HomeScreenProps) {
-  const onClick = useCallback(() => {
-    navigation.navigate('Details');
-  }, [navigation]);
+const onClick = useCallback(() => {
+navigation.navigate('Details');
+}, [navigation]);
 
-  return (
-          <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-            <TouchableHighlight onPress={onClick}>
-              <Text>Home Screen</Text>
-            </TouchableHighlight>
-          </View>
-  );
+return (
+<View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+<TouchableHighlight onPress={onClick}>
+<Text>Home Screen</Text>
+</TouchableHighlight>
+</View>
+);
 }
 
 function DetailsScreen({navigation}: DetailsScreenProps) {
-  const onClick = useCallback(() => {
-    navigation.navigate('Home');
-  }, [navigation]);
+const onClick = useCallback(() => {
+navigation.navigate('Home');
+}, [navigation]);
 
-  return (
-          <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-            <TouchableHighlight onPress={onClick}>
-              <Text>Details Screen</Text>
-            </TouchableHighlight>
-          </View>
-  );
+return (
+<View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+<TouchableHighlight onPress={onClick}>
+<Text>Details Screen</Text>
+</TouchableHighlight>
+</View>
+);
 }
 
 const Stack = createNativeStackNavigator();
 function App() {
-  return (
-          <NavigationContainer>
-            <Stack.Navigator initialRouteName="Home">
-              <Stack.Screen
-                      name="Home"
-                      component={HomeScreen}
-                      options={{title: 'Overview'}}
-              />
-              <Stack.Screen name="Details">
-                {props => <DetailsScreen {...props} />}
-              </Stack.Screen>
-            </Stack.Navigator>
-          </NavigationContainer>
-  );
+return (
+<NavigationContainer>
+<Stack.Navigator initialRouteName="Home">
+<Stack.Screen
+name="Home"
+component={HomeScreen}
+options={{title: 'Overview'}}
+/>
+<Stack.Screen name="Details">
+{props => <DetailsScreen {...props} />}
+</Stack.Screen>
+</Stack.Navigator>
+</NavigationContainer>
+);
 }
 
 export default App;
@@ -183,23 +184,23 @@ src/components/DismissKeyBoardView.tsx
 
 import React from 'react';
 import {
-  TouchableWithoutFeedback,
-  Keyboard,
-  StyleProp,
-  ViewStyle,
-  KeyboardAvoidingView,
-  Platform,
+TouchableWithoutFeedback,
+Keyboard,
+StyleProp,
+ViewStyle,
+KeyboardAvoidingView,
+Platform,
 } from 'react-native';
 
 const DismissKeyboardView: React.FC<{ style: StyleProp<ViewStyle> }> = ({children, ...props}) => (
-  <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-    <KeyboardAvoidingView
-      {...props}
-      style={props.style}
-      behavior={Platform.OS === 'android' ? undefined : 'padding'}>
-      {children}
-    </KeyboardAvoidingView>
-  </TouchableWithoutFeedback>
+<TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+<KeyboardAvoidingView
+{...props}
+style={props.style}
+behavior={Platform.OS === 'android' ? undefined : 'padding'}>
+{children}
+</KeyboardAvoidingView>
+</TouchableWithoutFeedback>
 );
 
 export default DismissKeyboardView;
@@ -223,6 +224,7 @@ src/components/DismissKeyBoardView.tsx
 back 서버 실행 필요, DB 없이도 되게끔 만들어둠. 서버 재시작 시 데이터는 날아가니 주의
 
 # 터미널 하나 더 켜서
+
 cd back
 npm start
 리덕스 설정
@@ -234,20 +236,20 @@ AppInner.tsx 생성 및 isLoggedIn을 redux로 교체(AppInner 분리 이유는 
 
 App.tsx
 
-import * as React from 'react';
+import \* as React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {Provider} from 'react-redux';
 import store from './src/store';
 import AppInner from './AppInner';
 
 function App() {
-  return (
-    <Provider store={store}>
-      <NavigationContainer>
-        <AppInner />
-      </NavigationContainer>
-    </Provider>
-  );
+return (
+<Provider store={store}>
+<NavigationContainer>
+<AppInner />
+</NavigationContainer>
+</Provider>
+);
 }
 
 export default App;
@@ -267,16 +269,16 @@ import Config from 'react-native-config';
 
 android/app/proguard-rules.pro
 
--keep class com.fooddeliveryapp.BuildConfig { *; }
+-keep class com.fooddeliveryapp.BuildConfig { \*; }
 android/app/build.gradle
 
 apply plugin: "com.android.application"
 apply from: project(':react-native-config').projectDir.getPath() + "/dotenv.gradle"
 ...
-    defaultConfig {
-        ...
-        resValue "string", "build_config_package", "com.fooddeliveryapp"
-    }
+defaultConfig {
+...
+resValue "string", "build_config_package", "com.fooddeliveryapp"
+}
 .env에 키=값 저장해서(예를 들어 abc=def) Config.abc로 꺼내 씀 .env
 API_URL=http://10.0.2.2:3105
 -10.0.2.2로 해야 함(localhost로 하면 안드로이드에서 안 됨) 암호화해서 저장할 데이터는 다음 패키지에
@@ -309,117 +311,115 @@ import Config from 'react-native-config';
 
 let socket: Socket | undefined;
 const useSocket = (): [Socket | undefined, () => void] => {
-  const disconnect = useCallback(() => {
-    if (socket) {
-      socket.disconnect();
-      socket = undefined;
-    }
-  }, []);
-  if (!socket) {
-    socket = io(`${Config.API_URL}`, {
-      transports: ['websocket'],
-    });
-  }
-  return [socket, disconnect];
+const disconnect = useCallback(() => {
+if (socket) {
+socket.disconnect();
+socket = undefined;
+}
+}, []);
+if (!socket) {
+socket = io(`${Config.API_URL}`, {
+transports: ['websocket'],
+});
+}
+return [socket, disconnect];
 };
 
 export default useSocket;
 AppInner.tsx
 
-  const [socket, disconnect] = useSocket();
+const [socket, disconnect] = useSocket();
 
-  useEffect(() => {
-    const helloCallback = (data: any) => {
-      console.log(data);
-    };
-    if (socket && isLoggedIn) {
-      console.log(socket);
-      socket.emit('login', 'hello');
-      socket.on('hello', helloCallback);
-    }
-    return () => {
-      if (socket) {
-        socket.off('hello', helloCallback);
-      }
-    };
-  }, [isLoggedIn, socket]);
+useEffect(() => {
+const helloCallback = (data: any) => {
+console.log(data);
+};
+if (socket && isLoggedIn) {
+console.log(socket);
+socket.emit('login', 'hello');
+socket.on('hello', helloCallback);
+}
+return () => {
+if (socket) {
+socket.off('hello', helloCallback);
+}
+};
+}, [isLoggedIn, socket]);
 
-  useEffect(() => {
-    if (!isLoggedIn) {
-      console.log('!isLoggedIn', !isLoggedIn);
-      disconnect();
-    }
-  }, [isLoggedIn, disconnect]);
-login을 emit하면 그때부터 서버가 hello로 데이터를 보내줌 *로그아웃 시에 disconnect해주는 것 잊지 말기
+useEffect(() => {
+if (!isLoggedIn) {
+console.log('!isLoggedIn', !isLoggedIn);
+disconnect();
+}
+}, [isLoggedIn, disconnect]);
+login을 emit하면 그때부터 서버가 hello로 데이터를 보내줌 \*로그아웃 시에 disconnect해주는 것 잊지 말기
 로그아웃
 src/pages/Settings.tsx
-
 
 실제 주문 받기[ch3]
 socket.io에서 주문 내역 받아서 store에 넣기
 
 AppInner.tsx
 
-  useEffect(() => {
-    const callback = (data: any) => {
-      console.log(data);
-      dispatch(orderSlice.actions.addOrder(data));
-    };
-    if (socket && isLoggedIn) {
-      socket.emit('acceptOrder', 'hello');
-      socket.on('order', callback);
-    }
-    return () => {
-      if (socket) {
-        socket.off('order', callback);
-      }
-    };
-  }, [isLoggedIn, socket]);
+useEffect(() => {
+const callback = (data: any) => {
+console.log(data);
+dispatch(orderSlice.actions.addOrder(data));
+};
+if (socket && isLoggedIn) {
+socket.emit('acceptOrder', 'hello');
+socket.on('order', callback);
+}
+return () => {
+if (socket) {
+socket.off('order', callback);
+}
+};
+}, [isLoggedIn, socket]);
 앱 다시 켤 때 자동로그인되게
 encrypted-storage에서 토큰 불러오기
 
 AppInner.tsx
 
-  // 앱 실행 시 토큰 있으면 로그인하는 코드
-  useEffect(() => {
-    const getTokenAndRefresh = async () => {
-      try {
-        const token = await EncryptedStorage.getItem('refreshToken');
-        if (!token) {
-          return;
-        }
-        const response = await axios.post(
-          `${Config.API_URL}/refreshToken`,
-          {},
-          {
-            headers: {
-              authorization: `Bearer ${token}`,
-            },
-          },
-        );
-        dispatch(
-          userSlice.actions.setUser({
-            name: response.data.data.name,
-            email: response.data.data.email,
-            accessToken: response.data.data.accessToken,
-          }),
-        );
-      } catch (error) {
-        console.error(error);
-        if ((error as AxiosError).response?.data.code === 'expired') {
-          Alert.alert('알림', '다시 로그인 해주세요.');
-        }
-      }
-    };
-    getTokenAndRefresh();
-  }, [dispatch]);
+// 앱 실행 시 토큰 있으면 로그인하는 코드
+useEffect(() => {
+const getTokenAndRefresh = async () => {
+try {
+const token = await EncryptedStorage.getItem('refreshToken');
+if (!token) {
+return;
+}
+const response = await axios.post(
+`${Config.API_URL}/refreshToken`,
+{},
+{
+headers: {
+authorization: `Bearer ${token}`,
+},
+},
+);
+dispatch(
+userSlice.actions.setUser({
+name: response.data.data.name,
+email: response.data.data.email,
+accessToken: response.data.data.accessToken,
+}),
+);
+} catch (error) {
+console.error(error);
+if ((error as AxiosError).response?.data.code === 'expired') {
+Alert.alert('알림', '다시 로그인 해주세요.');
+}
+}
+};
+getTokenAndRefresh();
+}, [dispatch]);
 잠깐 로그인 화면이 보이는 것은 SplashScreen으로 숨김
 주문 데이터 리덕스에 저장하기
 src/slices/order.ts
 
 수익금 확인하기
 src/pages/Settings.tsx
-
 
 주문 화면 만들기(수락/거절)
 src/pages/Orders.tsx
@@ -433,37 +433,37 @@ src/components/EachOrder.tsx
 accessToken 만료시 자동으로 refresh되게
 axios.interceptor 설정하기
 
-  useEffect(() => {
-    axios.interceptors.response.use(
-      response => {
-        return response;
-      },
-      async error => {
-        const {
-          config,
-          response: {status},
-        } = error;
-        if (status === 419) {
-          if (error.response.data.code === 'expired') {
-            const originalRequest = config;
-            const refreshToken = await EncryptedStorage.getItem('refreshToken');
-            // token refresh 요청
-            const {data} = await axios.post(
-              `${Config.API_URL}/refreshToken`, // token refresh api
-              {},
-              {headers: {authorization: `Bearer ${refreshToken}`}},
-            );
-            // 새로운 토큰 저장
-            dispatch(userSlice.actions.setAccessToken(data.data.accessToken));
-            originalRequest.headers.authorization = `Bearer ${data.data.accessToken}`;
-            // 419로 요청 실패했던 요청 새로운 토큰으로 재요청
-            return axios(originalRequest);
-          }
-        }
-        return Promise.reject(error);
-      },
-    );
-  }, [dispatch]);
+useEffect(() => {
+axios.interceptors.response.use(
+response => {
+return response;
+},
+async error => {
+const {
+config,
+response: {status},
+} = error;
+if (status === 419) {
+if (error.response.data.code === 'expired') {
+const originalRequest = config;
+const refreshToken = await EncryptedStorage.getItem('refreshToken');
+// token refresh 요청
+const {data} = await axios.post(
+`${Config.API_URL}/refreshToken`, // token refresh api
+{},
+{headers: {authorization: `Bearer ${refreshToken}`}},
+);
+// 새로운 토큰 저장
+dispatch(userSlice.actions.setAccessToken(data.data.accessToken));
+originalRequest.headers.authorization = `Bearer ${data.data.accessToken}`;
+// 419로 요청 실패했던 요청 새로운 토큰으로 재요청
+return axios(originalRequest);
+}
+}
+return Promise.reject(error);
+},
+);
+}, [dispatch]);
 네이버 지도 사용하기[ch4]
 npm i react-native-nmap --force
 npx pod-install # ios 전용
@@ -474,40 +474,40 @@ npx pod-install # ios 전용
 [ios]Xcode로는 xcworkspace 파일을 열어야함(xcodeproj 열면 안됨)
 [ios]iOS Bundle ID: com.[원하는이름].fooddeliveryapp(ex: com.zerocho.fooddeliveryapp)로 수정 src/components/EachOrder.tsx
 <View
-        style={{
+style={{
           width: Dimensions.get('window').width - 30,
           height: 200,
           marginTop: 10,
         }}>
-  <NaverMapView
-          style={{width: '100%', height: '100%'}}
-          zoomControl={false}
-          center={{
+<NaverMapView
+style={{width: '100%', height: '100%'}}
+zoomControl={false}
+center={{
             zoom: 10,
             tilt: 50,
             latitude: (start.latitude + end.latitude) / 2,
             longitude: (start.longitude + end.longitude) / 2,
           }}>
-    <Marker
-            coordinate={{
+<Marker
+coordinate={{
               latitude: start.latitude,
               longitude: start.longitude,
             }}
-            pinColor="blue"
-    />
-    <Path
-            coordinates={[
-              {
-                latitude: start.latitude,
-                longitude: start.longitude,
-              },
-              {latitude: end.latitude, longitude: end.longitude},
-            ]}
-    />
-    <Marker
-            coordinate={{latitude: end.latitude, longitude: end.longitude}}
-    />
-  </NaverMapView>
+pinColor="blue"
+/>
+<Path
+coordinates={[
+{
+latitude: start.latitude,
+longitude: start.longitude,
+},
+{latitude: end.latitude, longitude: end.longitude},
+]}
+/>
+<Marker
+coordinate={{latitude: end.latitude, longitude: end.longitude}}
+/>
+</NaverMapView>
 </View>
 위치 정보 가져오기
 권한 얻기(위치정보, 카메라, 갤러리)
@@ -556,82 +556,82 @@ import {Alert, Linking, Platform} from 'react-native';
 import {check, PERMISSIONS, request, RESULTS} from 'react-native-permissions';
 
 function usePermissions() {
-  // 권한 관련
-  useEffect(() => {
-    if (Platform.OS === 'android') {
-      check(PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION)
-        .then(result => {
-          console.log('check location', result);
-          if (result === RESULTS.BLOCKED || result === RESULTS.DENIED) {
-            Alert.alert(
-              '이 앱은 위치 권한 허용이 필요합니다.',
-              '앱 설정 화면을 열어서 항상 허용으로 바꿔주세요.',
-              [
-                {
-                  text: '네',
-                  onPress: () => Linking.openSettings(),
-                },
-                {
-                  text: '아니오',
-                  onPress: () => console.log('No Pressed'),
-                  style: 'cancel',
-                },
-              ],
-            );
-          }
-        })
-        .catch(console.error);
-    } else if (Platform.OS === 'ios') {
-      check(PERMISSIONS.IOS.LOCATION_ALWAYS)
-        .then(result => {
-          if (result === RESULTS.BLOCKED || result === RESULTS.DENIED) {
-            Alert.alert(
-              '이 앱은 백그라운드 위치 권한 허용이 필요합니다.',
-              '앱 설정 화면을 열어서 항상 허용으로 바꿔주세요.',
-              [
-                {
-                  text: '네',
-                  onPress: () => Linking.openSettings(),
-                },
-                {
-                  text: '아니오',
-                  onPress: () => console.log('No Pressed'),
-                  style: 'cancel',
-                },
-              ],
-            );
-          }
-        })
-        .catch(console.error);
-    }
-    if (Platform.OS === 'android') {
-      check(PERMISSIONS.ANDROID.CAMERA)
-        .then(result => {
-          if (result === RESULTS.DENIED || result === RESULTS.GRANTED) {
-            return request(PERMISSIONS.ANDROID.CAMERA);
-          } else {
-            console.log(result);
-            throw new Error('카메라 지원 안 함');
-          }
-        })
-        .catch(console.error);
-    } else {
-      check(PERMISSIONS.IOS.CAMERA)
-        .then(result => {
-          if (
-            result === RESULTS.DENIED ||
-            result === RESULTS.LIMITED ||
-            result === RESULTS.GRANTED
-          ) {
-            return request(PERMISSIONS.IOS.CAMERA);
-          } else {
-            console.log(result);
-            throw new Error('카메라 지원 안 함');
-          }
-        })
-        .catch(console.error);
-    }
-  }, []);
+// 권한 관련
+useEffect(() => {
+if (Platform.OS === 'android') {
+check(PERMISSIONS.ANDROID.ACCESS_FINE_LOCATION)
+.then(result => {
+console.log('check location', result);
+if (result === RESULTS.BLOCKED || result === RESULTS.DENIED) {
+Alert.alert(
+'이 앱은 위치 권한 허용이 필요합니다.',
+'앱 설정 화면을 열어서 항상 허용으로 바꿔주세요.',
+[
+{
+text: '네',
+onPress: () => Linking.openSettings(),
+},
+{
+text: '아니오',
+onPress: () => console.log('No Pressed'),
+style: 'cancel',
+},
+],
+);
+}
+})
+.catch(console.error);
+} else if (Platform.OS === 'ios') {
+check(PERMISSIONS.IOS.LOCATION_ALWAYS)
+.then(result => {
+if (result === RESULTS.BLOCKED || result === RESULTS.DENIED) {
+Alert.alert(
+'이 앱은 백그라운드 위치 권한 허용이 필요합니다.',
+'앱 설정 화면을 열어서 항상 허용으로 바꿔주세요.',
+[
+{
+text: '네',
+onPress: () => Linking.openSettings(),
+},
+{
+text: '아니오',
+onPress: () => console.log('No Pressed'),
+style: 'cancel',
+},
+],
+);
+}
+})
+.catch(console.error);
+}
+if (Platform.OS === 'android') {
+check(PERMISSIONS.ANDROID.CAMERA)
+.then(result => {
+if (result === RESULTS.DENIED || result === RESULTS.GRANTED) {
+return request(PERMISSIONS.ANDROID.CAMERA);
+} else {
+console.log(result);
+throw new Error('카메라 지원 안 함');
+}
+})
+.catch(console.error);
+} else {
+check(PERMISSIONS.IOS.CAMERA)
+.then(result => {
+if (
+result === RESULTS.DENIED ||
+result === RESULTS.LIMITED ||
+result === RESULTS.GRANTED
+) {
+return request(PERMISSIONS.IOS.CAMERA);
+} else {
+console.log(result);
+throw new Error('카메라 지원 안 함');
+}
+})
+.catch(console.error);
+}
+}, []);
 }
 
 export default usePermissions;
@@ -658,9 +658,9 @@ Native Module Patching
 npm i patch-package
 package.json
 
-  "scripts": {
-    "postinstall": "patch-package",
-    "android": "react-native run-android",
+"scripts": {
+"postinstall": "patch-package",
+"android": "react-native run-android",
 patch 후 적용하기
 npx patch-package react-native-image-crop-picker
 앞으로 npm i 할 때마다 자동으로 패치가 적용됨(postinstall 스크립트 덕분)
@@ -683,40 +683,40 @@ src/modules/TMap.ts
 android/app/src/main/AndroidManifest.xml
 
 ...
-  <queries>
-    <package android:name="com.skt.tmap.ku" />
-  </queries>
+<queries>
+<package android:name="com.skt.tmap.ku" />
+</queries>
 </manifest>
 src/pages/Ing.tsx
 
 TMap.openNavi(
-  '도착지',
-  end.longitude.toString(),
-  end.latitude.toString(),
-  'MOTORCYCLE',
+'도착지',
+end.longitude.toString(),
+end.latitude.toString(),
+'MOTORCYCLE',
 ).then(data => {
-  console.log('TMap callback', data);
-  if (!data) {
-    Alert.alert('알림', '티맵을 설치하세요.');
-  }
+console.log('TMap callback', data);
+if (!data) {
+Alert.alert('알림', '티맵을 설치하세요.');
+}
 });
 react-native-splash-screen
 npm i react-native-splash-screen
 여기서 Third step과 Getting Started 따라하기
 android/app/src/main/res/drawable 폴더 만들고 그 안에 launch_screen.png 넣기 AppInner.tsx
 ...
-        const token = await EncryptedStorage.getItem('refreshToken');
-        if (!token) {
-          SplashScreen.hide();
-          return;
-        }
-        ...
-      } finally {
-        SplashScreen.hide();
-      }
-    };
-    getTokenAndRefresh();
-  }, [dispatch]);
+const token = await EncryptedStorage.getItem('refreshToken');
+if (!token) {
+SplashScreen.hide();
+return;
+}
+...
+} finally {
+SplashScreen.hide();
+}
+};
+getTokenAndRefresh();
+}, [dispatch]);
 앱 icon 변경
 Android 다운받은 후 android/app/src/main 아래에 넣기
 [ios] 링크 에서 다운로드된 Assets.xcassets를 ios/FoodDeliveryApp 내부에 넣기
@@ -733,17 +733,17 @@ npm i react-native-fast-image
 링크 src/slices/order.ts
 
 interface InitialState {
-  ...
-  completes: Order[];
+...
+completes: Order[];
 }
 const initialState: InitialState = {
-  ...
-  completes: [],
+...
+completes: [],
 };
 ...
-    setCompletes(state, action) {
-      state.completes = action.payload;
-    },
+setCompletes(state, action) {
+state.completes = action.payload;
+},
 src/pages/Settings.tsx
 
 FCM
@@ -782,17 +782,18 @@ android/app/build.gradle
 
 def enableSeparateBuildPerCPUArchitecture = true
 
-/**
-* Run Proguard to shrink the Java bytecode in release builds.
-*/ 
-def enableProguardInReleaseBuilds = true
-package.json
+/\*\*
+
+- Run Proguard to shrink the Java bytecode in release builds.
+  \*/
+  def enableProguardInReleaseBuilds = true
+  package.json
 
   "scripts": {
-    ...
-    "build:android": "npm ci && cd android && ./gradlew bundleRelease && cd .. && open android/app/build/outputs/bundle/release",
-    "apk:android": "npm ci && cd android && ./gradlew assembleRelease && cd .. && open android/app/build/outputs/apk/release",
-출시 과정
+  ...
+  "build:android": "npm ci && cd android && ./gradlew bundleRelease && cd .. && open android/app/build/outputs/bundle/release",
+  "apk:android": "npm ci && cd android && ./gradlew assembleRelease && cd .. && open android/app/build/outputs/apk/release",
+  출시 과정
 
 iOS
 iOS 개발자 멤버쉽 가입 필요
@@ -824,13 +825,13 @@ App.tsx
 import codePush from "react-native-code-push";
 
 const codePushOptions: CodePushOptions = {
-  checkFrequency: CodePush.CheckFrequency.MANUAL,
-  // 언제 업데이트를 체크하고 반영할지를 정한다.
-  // ON_APP_RESUME은 Background에서 Foreground로 오는 것을 의미
-  // ON_APP_START은 앱이 실행되는(켜지는) 순간을 의미
-  installMode: CodePush.InstallMode.IMMEDIATE,
-  mandatoryInstallMode: CodePush.InstallMode.IMMEDIATE,
-  // 업데이트를 어떻게 설치할 것인지 (IMMEDIATE는 강제설치를 의미)
+checkFrequency: CodePush.CheckFrequency.MANUAL,
+// 언제 업데이트를 체크하고 반영할지를 정한다.
+// ON_APP_RESUME은 Background에서 Foreground로 오는 것을 의미
+// ON_APP_START은 앱이 실행되는(켜지는) 순간을 의미
+installMode: CodePush.InstallMode.IMMEDIATE,
+mandatoryInstallMode: CodePush.InstallMode.IMMEDIATE,
+// 업데이트를 어떻게 설치할 것인지 (IMMEDIATE는 강제설치를 의미)
 };
 function App() {
 }
