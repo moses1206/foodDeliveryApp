@@ -1,12 +1,18 @@
-import * as React from 'react';
+import React, {useState} from 'react';
 import {NavigationContainer, ParamListBase} from '@react-navigation/native';
 import {
   createNativeStackNavigator,
   NativeStackScreenProps,
 } from '@react-navigation/native-stack';
-import {Text, View, TouchableHighlight, Pressable} from 'react-native';
+import {
+  Text,
+  View,
+  TouchableHighlight,
+  Pressable,
+  StyleSheet,
+  Dimensions,
+} from 'react-native';
 import {useCallback} from 'react';
-
 type RootStackParamList = {
   Home: undefined;
   Details: undefined;
@@ -82,6 +88,8 @@ function BarcodeScreen({navigation}: BarcodeScreenProps) {
 const Stack = createNativeStackNavigator();
 
 function App() {
+  const [modal, showModal] = useState(true);
+
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home">
@@ -93,8 +101,59 @@ function App() {
         <Stack.Screen name="Details" component={DetailsScreen} />
         <Stack.Screen name="Barcode" component={BarcodeScreen} />
       </Stack.Navigator>
+
+      {modal && (
+        <Pressable onPress={() => showModal(false)} style={styles.modal}>
+          <Pressable style={styles.modalInner}>
+            <View style={{flex: 5, backgroundColor: 'yellow'}}>
+              <Text>모달 본문</Text>
+            </View>
+            <View
+              style={{
+                flexDirection: 'row',
+                alignItems: 'center',
+                height: 50,
+              }}>
+              <Pressable style={{flex: 1, alignItems: 'center'}}>
+                <Text>네</Text>
+              </Pressable>
+              <Pressable style={{flex: 1, alignItems: 'center'}}>
+                <Text>아니요</Text>
+              </Pressable>
+            </View>
+          </Pressable>
+        </Pressable>
+      )}
     </NavigationContainer>
   );
 }
+
+const styles = StyleSheet.create({
+  modal: {
+    position: 'absolute',
+    backgroundColor: 'rgba(0,0,0,0.5)',
+    alignItems: 'center',
+    top: 0,
+    right: 0,
+    left: 0,
+    bottom: 0,
+  },
+  modalInner: {
+    position: 'absolute',
+    backgroundColor: 'orange',
+    width: Dimensions.get('window').width - 30,
+    marginHorizontal: 50,
+    height: 300,
+    borderRadius: 20,
+    padding: 20,
+    // 아이폰
+    shadowColor: 'black',
+    shadowOpacity: 0.5,
+    shadowRadius: 5,
+    shadowOffset: {width: 5, height: 5},
+    // 안드로이드
+    elevation: 15,
+  },
+});
 
 export default App;
