@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, {useCallback, useRef, useState} from 'react';
 import {
   View,
@@ -105,10 +106,20 @@ function SignIn({navigation}: SignInScreenProps) {
           <Text>회원가입하기</Text>
         </Pressable>
       </View>
+=======
+import React from 'react';
+import {View, Text} from 'react-native';
+
+function SignIn() {
+  return (
+    <View>
+      <Text>로그인</Text>
+>>>>>>> 9ae9d932396387efbffcd5892388c0fa5966207e
     </View>
   );
 }
 
+<<<<<<< HEAD
 const styles = StyleSheet.create({
   inputWrapper: {padding: 20},
   textInput: {
@@ -137,4 +148,6 @@ const styles = StyleSheet.create({
   buttonZone: {alignItems: 'center'},
 });
 
+=======
+>>>>>>> 9ae9d932396387efbffcd5892388c0fa5966207e
 export default SignIn;
