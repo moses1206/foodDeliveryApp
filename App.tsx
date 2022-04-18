@@ -12,17 +12,10 @@ import SignUp from './src/pages/SignUp';
 
 export type LoggedInParamList = {
   Orders: undefined;
-<<<<<<< HEAD
-  Settings: undefined;
-  Delivery: undefined;
-  Barcode: undefined;
-  Complete: {orderId: string};
-=======
   Settings: undefined; //정산 화면
   Delivery: undefined; // 지도 화면
   Barcode: undefined;
   Complete: {orderId: string}; // 배달 완료 처리 (사진을 찍어서 보냄)
->>>>>>> 9ae9d932396387efbffcd5892388c0fa5966207e
 };
 
 export type RootStackParamList = {
@@ -34,11 +27,7 @@ const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 
 function App() {
-<<<<<<< HEAD
   const [isLoggedIn, setLoggedIn] = useState(false);
-=======
-  const [isLoggedIn, setLoggedIn] = useState(true);
->>>>>>> 9ae9d932396387efbffcd5892388c0fa5966207e
   return (
     <NavigationContainer>
       {isLoggedIn ? (
