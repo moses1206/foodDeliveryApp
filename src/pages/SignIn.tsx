@@ -1,5 +1,3 @@
-
-   
 import React, {useCallback, useRef, useState} from 'react';
 import {
   Alert,
@@ -11,6 +9,7 @@ import {
 } from 'react-native';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {RootStackParamList} from '../../App';
+import DismissKeyboardView from '../components/DismissKeyboardView';
 
 type SignInScreenProps = NativeStackScreenProps<RootStackParamList, 'SignIn'>;
 
@@ -20,10 +19,10 @@ function SignIn({navigation}: SignInScreenProps) {
   const emailRef = useRef<TextInput | null>(null);
   const passwordRef = useRef<TextInput | null>(null);
 
-  const onChangeEmail = useCallback((text:any) => {
+  const onChangeEmail = useCallback((text: any) => {
     setEmail(text.trim());
   }, []);
-  const onChangePassword = useCallback((text:any) => {
+  const onChangePassword = useCallback((text: any) => {
     setPassword(text.trim());
   }, []);
   const onSubmit = useCallback(() => {
@@ -42,7 +41,7 @@ function SignIn({navigation}: SignInScreenProps) {
 
   const canGoNext = email && password;
   return (
-    <View>
+    <DismissKeyboardView>
       <View style={styles.inputWrapper}>
         <Text style={styles.label}>이메일</Text>
         <TextInput
@@ -94,7 +93,7 @@ function SignIn({navigation}: SignInScreenProps) {
           <Text>회원가입하기</Text>
         </Pressable>
       </View>
-    </View>
+    </DismissKeyboardView>
   );
 }
 
