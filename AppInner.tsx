@@ -42,7 +42,7 @@ function AppInner() {
     if (socket && isLoggedIn) {
       console.log(socket);
       // 서버에 보내기
-      // socket.emit('login', 'hello');
+      socket.emit('login', 'hello');
       // 서버에서 받기
       socket.on('hello', helloCallback);
     }
